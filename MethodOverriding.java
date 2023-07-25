@@ -1,89 +1,64 @@
-import java.util.Arrays;
+import java.util.*;
 
-public class MethodOverriding {
+public class Even_Odd {
+    public void transpose() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter row size of the first matrix:");
+        int r = sc.nextInt();
+        System.out.println("Enter column size of the first matrix:");
+        int c = sc.nextInt();
+        int m[][] = new int[r][c];
+        int i, j;
+        System.out.println("Enter the matrix elements:");
+        for (i = 0; i < r; i++) {
+            for (j = 0; j < c; j++) {
+                m[i][j] = sc.nextInt();
+            }
+        }
+        int t[][] = new int[c][r];
+        for (i = 0; i < r; i++) {
+            for (j = 0; j < c; j++) {
+                t[j][i] = m[i][j];
+            }
+        }
+        System.out.println("Matrix:");
+        for (i = 0; i < r; i++) {
+            for (j = 0; j < c; j++) {
+                System.out.print(m[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("Transpose:");
+        for (i = 0; i < c; i++) {
+            for (j = 0; j < r; j++) {
+                System.out.print(t[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static class EvenOdd extends Even_Odd {
+        @Override
+        public void transpose() {
+            super.transpose();
+            int a[] = {18, 89, 25, 34, 65, 27, 64};
+            System.out.println("Odd numbers are:");
+            for (int i = 0; i < a.length; i++) {
+                if (a[i] % 2 != 0) {
+                    System.out.print(a[i] + " ");
+                }
+            }
+            System.out.println("\nEven numbers are:");
+            for (int i = 0; i < a.length; i++) {
+                if (a[i] % 2 == 0) {
+                    System.out.print(a[i] + " ");
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        int[] inputArray = {11, 20, 31, 40, 51, 60, 71, 80, 91, 100};
-
-        int[] evenArray = getEvenArray(inputArray);
-        int[] oddArray = getOddArray(inputArray);
-
-        System.out.println("Original Array: " + Arrays.toString(inputArray));
-        System.out.println("Even Array: " + Arrays.toString(evenArray));
-        System.out.println("Odd Array: " + Arrays.toString(oddArray));
-
-        int[][] matrix = {
-            {1, 2, 3},
-            {4, 5, 6},
-            {7, 8, 9}
-        };
-
-        int[][] transposeMatrix = transposeMatrix(matrix);
-        System.out.println("Original Matrix:");
-        printMatrix(matrix);
-        System.out.println("Transpose Matrix:");
-        printMatrix(transposeMatrix);
-    }
-
-    // Method to put even elements of an array in a separate array
-    public static int[] getEvenArray(int[] arr) {
-        int count = 0;
-        for (int num : arr) {
-            if (num % 2 == 0) {
-                count++;
-            }
-        }
-
-        int[] evenArray = new int[count];
-        int index = 0;
-        for (int num : arr) {
-            if (num % 2 == 0) {
-                evenArray[index++] = num;
-            }
-        }
-
-        return evenArray;
-    }
-
-    
-    public static int[] getOddArray(int[] arr) {
-        int count = 0;
-        for (int num : arr) {
-            if (num % 2 != 0) {
-                count++;
-            }
-        }
-
-        int[] oddArray = new int[count];
-        int index = 0;
-        for (int num : arr) {
-            if (num % 2 != 0) {
-                oddArray[index++] = num;
-            }
-        }
-
-        return oddArray;
-    }
-
-   
-    public static int[][] transposeMatrix(int[][] matrix) {
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-
-        int[][] transpose = new int[cols][rows];
-
-        for (int i = 0; i < cols; i++) {
-            for (int j = 0; j < rows; j++) {
-                transpose[i][j] = matrix[j][i];
-            }
-        }
-
-        return transpose;
-    }
-
-  
-    public static void printMatrix(int[][] matrix) {
-        for (int[] row : matrix) {
-            System.out.println(Arrays.toString(row));
-        }
+        EvenOdd k = new EvenOdd();
+        k.transpose();
     }
 }
